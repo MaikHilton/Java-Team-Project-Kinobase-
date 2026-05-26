@@ -259,7 +259,6 @@ feature/xxx  →  Pull Request  →  develop  →  PR (Team Lead)  →  main
 | `docs` | Зміни в документації / JavaDoc |
 | `refactor` | Рефакторинг без зміни поведінки |
 | `test` | Тестові дані або тести |
-| `chore` | Налаштування проєкту, залежності |
 
 ### Приклади
 
