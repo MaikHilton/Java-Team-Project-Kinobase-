@@ -15,6 +15,3 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Generated docs (відновлюються через mvn javadoc:javadoc)
-docs/
