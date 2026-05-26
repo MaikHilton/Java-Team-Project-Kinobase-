@@ -285,8 +285,8 @@ refactor(dao): extract DB connection to JDBCHelper class
 ### 1. Клонувати репозиторій
 
 ```bash
-git clone https://github.com/MaikHilton/Java-Team-Project.git
-cd Java-Team-Project
+git clone https://github.com/MaikHilton/Java-Team-Project-Kinobase-
+cd Java-Team-Project-Kinobase-
 ```
 
 ### 2. Створити базу даних PostgreSQL
@@ -318,3 +318,5 @@ db.password=YOUR_PASSWORD
 mvn clean compile
 mvn javafx:run
 ```
+або
+запустити через Launcher.java
