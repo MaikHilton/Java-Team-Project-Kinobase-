@@ -1,0 +1,137 @@
+/* ================================================================
+   Кінобаза – style.css
+   ================================================================ */
+
+/* ── Базові кольори ─────────────────────────────────────────────── */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #f4f6f9;
+    -fx-background: #f4f6f9;
+}
+
+/* ── Шапка ──────────────────────────────────────────────────────── */
+.header {
+    -fx-background-color: #1a1a2e;
+}
+.header-title {
+    -fx-text-fill: #e94560;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+.header-sub {
+    -fx-text-fill: #a0a8b8;
+    -fx-font-size: 13px;
+}
+
+/* ── Підвал ─────────────────────────────────────────────────────── */
+.footer {
+    -fx-background-color: #1a1a2e;
+}
+.footer-text {
+    -fx-text-fill: #a0a8b8;
+    -fx-font-size: 11px;
+}
+
+/* ── TabPane ────────────────────────────────────────────────────── */
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #16213e;
+}
+.tab {
+    -fx-background-color: #16213e;
+}
+.tab .tab-label {
+    -fx-text-fill: #a0a8b8;
+    -fx-font-size: 13px;
+}
+.tab:selected {
+    -fx-background-color: #0f3460;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: #e94560;
+    -fx-font-weight: bold;
+}
+
+/* ── TableView ──────────────────────────────────────────────────── */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dde1e9;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.table-view .column-header {
+    -fx-background-color: #0f3460;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.table-row-cell:odd  { -fx-background-color: #f9fafc; }
+.table-row-cell:even { -fx-background-color: #ffffff;  }
+.table-row-cell:selected {
+    -fx-background-color: #cde4f7;
+    -fx-text-fill: #000000;
+}
+.table-row-cell:hover {
+    -fx-background-color: #e8f4fd;
+}
+
+/* ── TitledPane ─────────────────────────────────────────────────── */
+.section-pane > .title {
+    -fx-background-color: #e8edf5;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a2e;
+}
+.section-pane > .content {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dde1e9;
+}
+
+/* ── Кнопки ─────────────────────────────────────────────────────── */
+.button {
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+    -fx-font-size: 12px;
+    -fx-padding: 6 12 6 12;
+}
+.btn-primary {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: white;
+}
+.btn-primary:hover { -fx-background-color: #1a4a80; }
+
+.btn-warning {
+    -fx-background-color: #e67e22;
+    -fx-text-fill: white;
+}
+.btn-warning:hover { -fx-background-color: #d35400; }
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+.btn-danger:hover { -fx-background-color: #c0392b; }
+
+.btn-secondary {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+}
+.btn-secondary:hover { -fx-background-color: #7f8c8d; }
+
+/* ── TextField / ComboBox ───────────────────────────────────────── */
+.text-field, .combo-box {
+    -fx-background-radius: 4;
+    -fx-border-color: #c8d0dc;
+    -fx-border-radius: 4;
+    -fx-padding: 5 8 5 8;
+}
+.text-field:focused, .combo-box:showing {
+    -fx-border-color: #0f3460;
+}
+
+/* ── Повідомлення ───────────────────────────────────────────────── */
+.msg-label {
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+    -fx-min-height: 18px;
+}

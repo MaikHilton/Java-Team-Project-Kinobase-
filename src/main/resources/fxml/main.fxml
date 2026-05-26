@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.kinobase.controller.MainController"
+            prefWidth="1100" prefHeight="700">
+
+    <!-- ══ ШАПКА ════════════════════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="10">
+            <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+            <Label text="🎬 Кінобаза" styleClass="header-title"/>
+            <Label text="Інформаційна система оцінювання фільмів" styleClass="header-sub"/>
+        </HBox>
+    </top>
+
+    <!-- ══ ВКЛАДКИ ══════════════════════════════════════════════════════════ -->
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+
+            <!-- ─── ВКЛАДКА 1: ФІЛЬМИ ─────────────────────────────────────── -->
+            <Tab text="🎥  Фільми">
+                <SplitPane dividerPositions="0.65">
+
+                    <!-- Ліва сторона: таблиця + пошук -->
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="8" bottom="8" left="12"/></padding>
+
+                        <!-- Рядок пошуку -->
+                        <TitledPane text="🔍 Пошук" collapsible="false" styleClass="section-pane">
+                            <GridPane hgap="8" vgap="6">
+                                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                                <Label text="Назва:"           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <TextField fx:id="tfSearchName" promptText="Частина назви…"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="160"/>
+                                <Label text="Жанр:"            GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                                <ComboBox fx:id="cbSearchGenre" promptText="– будь-який –"
+                                          GridPane.columnIndex="3" GridPane.rowIndex="0" prefWidth="130"/>
+                                <Label text="Країна:"          GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+                                <ComboBox fx:id="cbSearchCountry" promptText="– будь-яка –"
+                                          GridPane.columnIndex="5" GridPane.rowIndex="0" prefWidth="130"/>
+                                <Label text="Роки:"            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <TextField fx:id="tfYearFrom" promptText="від"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70"/>
+                                <TextField fx:id="tfYearTo"   promptText="до"
+                                           GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="70"/>
+                                <HBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="1"
+                                      GridPane.columnSpan="3">
+                                    <Button text="🔎 Знайти"  onAction="#onSearchMovies"  styleClass="btn-primary"/>
+                                    <Button text="✖ Скинути"  onAction="#onResetSearch"   styleClass="btn-secondary"/>
+                                </HBox>
+                            </GridPane>
+                        </TitledPane>
+
+                        <!-- Таблиця фільмів -->
+                        <TableView fx:id="movieTable" VBox.vgrow="ALWAYS"
+                                   onMouseClicked="#onSelectMovie">
+                            <columns>
+                                <TableColumn fx:id="colMovieId"   text="ID"      prefWidth="45"/>
+                                <TableColumn fx:id="colMovieName" text="Назва"   prefWidth="220"/>
+                                <TableColumn fx:id="colGenre"     text="Жанр"    prefWidth="110"/>
+                                <TableColumn fx:id="colCountry"   text="Країна"  prefWidth="110"/>
+                                <TableColumn fx:id="colYear"      text="Рік"     prefWidth="60"/>
+                                <TableColumn fx:id="colVotes"     text="Голоси"  prefWidth="70"/>
+                                <TableColumn fx:id="colRating"    text="Рейтинг" prefWidth="130"/>
+                            </columns>
+                        </TableView>
+
+                        <Label fx:id="lblMovieMsg" text="" styleClass="msg-label"/>
+                    </VBox>
+
+                    <!-- Права сторона: форма -->
+                    <VBox spacing="10" prefWidth="340">
+                        <padding><Insets top="10" right="12" bottom="8" left="8"/></padding>
+                        <TitledPane text="📝 Додати / Редагувати фільм" collapsible="false"
+                                    styleClass="section-pane">
+                            <VBox spacing="8">
+                                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                                <Label text="Назва фільму *"/>
+                                <TextField fx:id="tfMovieName" promptText="Введіть назву…"/>
+                                <Label text="Жанр"/>
+                                <ComboBox fx:id="cbGenre" promptText="Оберіть жанр" maxWidth="Infinity"/>
+                                <Label text="Країна"/>
+                                <ComboBox fx:id="cbCountry" promptText="Оберіть країну" maxWidth="Infinity"/>
+                                <Label text="Рік виходу *"/>
+                                <TextField fx:id="tfYear" promptText="Наприклад: 2023"/>
+                                <HBox spacing="6">
+                                    <Button text="➕ Додати"     onAction="#onAddMovie"    styleClass="btn-primary"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Button text="✏️ Оновити"   onAction="#onUpdateMovie"  styleClass="btn-warning"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Button text="🗑 Видалити"  onAction="#onDeleteMovie"  styleClass="btn-danger"    HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                </HBox>
+                            </VBox>
+                        </TitledPane>
+                    </VBox>
+                </SplitPane>
+            </Tab>
+
+            <!-- ─── ВКЛАДКА 2: ГЛЯДАЧІ ────────────────────────────────────── -->
+            <Tab text="👤  Глядачі">
+                <SplitPane dividerPositions="0.65">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="8" bottom="8" left="12"/></padding>
+                        <TableView fx:id="viewerTable" VBox.vgrow="ALWAYS"
+                                   onMouseClicked="#onSelectViewer">
+                            <columns>
+                                <TableColumn fx:id="colViewerId"   text="ID"  prefWidth="60"/>
+                                <TableColumn fx:id="colViewerName" text="Ім'я глядача" prefWidth="350"/>
+                            </columns>
+                        </TableView>
+                        <Label fx:id="lblViewerMsg" text="" styleClass="msg-label"/>
+                    </VBox>
+                    <VBox spacing="10" prefWidth="300">
+                        <padding><Insets top="10" right="12" bottom="8" left="8"/></padding>
+                        <TitledPane text="👤 Додати / Редагувати глядача" collapsible="false"
+                                    styleClass="section-pane">
+                            <VBox spacing="8">
+                                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                                <Label text="Ім'я глядача *"/>
+                                <TextField fx:id="tfViewerName" promptText="Введіть ім'я…"/>
+                                <HBox spacing="6">
+                                    <Button text="➕ Додати"   onAction="#onAddViewer"    styleClass="btn-primary"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Button text="✏️ Оновити" onAction="#onUpdateViewer"  styleClass="btn-warning"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Button text="🗑 Видалити" onAction="#onDeleteViewer" styleClass="btn-danger"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                </HBox>
+                            </VBox>
+                        </TitledPane>
+                    </VBox>
+                </SplitPane>
+            </Tab>
+
+            <!-- ─── ВКЛАДКА 3: ОЦІНКИ ─────────────────────────────────────── -->
+            <Tab text="⭐  Оцінки">
+                <SplitPane dividerPositions="0.65">
+                    <VBox spacing="8">
+                        <padding><Insets top="10" right="8" bottom="8" left="12"/></padding>
+                        <TableView fx:id="ratingTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colRatingViewer" text="Глядач"  prefWidth="200"/>
+                                <TableColumn fx:id="colRatingMovie"  text="Фільм"   prefWidth="250"/>
+                                <TableColumn fx:id="colRatingScore"  text="Оцінка"  prefWidth="80"/>
+                            </columns>
+                        </TableView>
+                        <Label fx:id="lblRatingMsg" text="" styleClass="msg-label"/>
+                    </VBox>
+                    <VBox spacing="10" prefWidth="320">
+                        <padding><Insets top="10" right="12" bottom="8" left="8"/></padding>
+                        <TitledPane text="⭐ Додати оцінку" collapsible="false"
+                                    styleClass="section-pane">
+                            <VBox spacing="8">
+                                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                                <Label text="Глядач *"/>
+                                <ComboBox fx:id="cbRatingViewer" promptText="Оберіть глядача" maxWidth="Infinity"/>
+                                <Label text="Фільм *"/>
+                                <ComboBox fx:id="cbRatingMovie" promptText="Оберіть фільм" maxWidth="Infinity"/>
+                                <Label text="Оцінка (1–10) *"/>
+                                <Spinner fx:id="spRatingScore" prefWidth="100"/>
+                                <HBox spacing="6">
+                                    <Button text="⭐ Зберегти"  onAction="#onAddRating"    styleClass="btn-primary" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Button text="🗑 Видалити"  onAction="#onDeleteRating"  styleClass="btn-danger"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                </HBox>
+                            </VBox>
+                        </TitledPane>
+                    </VBox>
+                </SplitPane>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- ══ ПІДВАЛ ════════════════════════════════════════════════════════════ -->
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT">
+            <padding><Insets top="6" right="16" bottom="6" left="16"/></padding>
+            <Label text="Кінобаза v1.0 · JavaFX + JDBC + PostgreSQL" styleClass="footer-text"/>
+        </HBox>
+    </bottom>
+</BorderPane>
