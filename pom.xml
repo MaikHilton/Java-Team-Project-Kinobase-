@@ -21,7 +21,6 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -33,7 +32,6 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- PostgreSQL JDBC -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -43,7 +41,6 @@
 
     <build>
         <plugins>
-            <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -53,7 +50,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -65,26 +61,25 @@
                 </configuration>
             </plugin>
 
-            <!-- JavaDoc Plugin -->
             <plugin>
-                <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-javadoc-plugin</artifactId>
-                      <version>3.6.3</version>
-                      <configuration>
-                          <outputDirectory>${project.basedir}/docs</outputDirectory>
-                          <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
-                          <destDir>.</destDir>
-                          <encoding>UTF-8</encoding>
-                          <docencoding>UTF-8</docencoding>
-                          <charset>UTF-8</charset>
-        
-                          <legacyMode>true</legacyMode>
-                          <detectModules>false</detectModules>
-                          <additionalOptions>
-                     <additionalOption>--allow-script-in-comments</additionalOption>
-                 </additionalOptions>
-                  </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <outputDirectory>${project.basedir}/docs</outputDirectory>
+                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                    <destDir>.</destDir>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <charset>UTF-8</charset>
+                    
+                    <legacyMode>true</legacyMode>
+                    <detectModules>false</detectModules>
+                    <additionalOptions>
+                        <additionalOption>--allow-script-in-comments</additionalOption>
+                    </additionalOptions>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
