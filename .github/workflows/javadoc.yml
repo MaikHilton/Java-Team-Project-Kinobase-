@@ -18,16 +18,15 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # Додано фазу compile, яка завантажує бібліотеки JavaFX перед генерацією документації
+      # Використовуємо життєвий цикл проходження dependency resolution
       - name: Generate JavaDoc
-        run: mvn clean compile javadoc:javadoc --no-transfer-progress
+        run: mvn process-sources javadoc:javadoc --no-transfer-progress
 
       - name: Copy to docs/
         run: |
           rm -rf docs/
           cp -r target/site/apidocs/ docs/
 
-      # Додано прапорець примусового додавання -f для надійності
       - name: Commit and push docs/
         run: |
           git config user.name  "github-actions[bot]"
