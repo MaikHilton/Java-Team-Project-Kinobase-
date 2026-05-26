@@ -67,18 +67,24 @@
 
             <!-- JavaDoc Plugin -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.3</version>
-                <configuration>
-                    <outputDirectory>${project.basedir}/docs</outputDirectory>
-                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
-                    <destDir>.</destDir>
-                    <encoding>UTF-8</encoding>
-                    <docencoding>UTF-8</docencoding>
-                    <charset>UTF-8</charset>
-                </configuration>
-            </plugin>
+                <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-javadoc-plugin</artifactId>
+                      <version>3.6.3</version>
+                      <configuration>
+                          <outputDirectory>${project.basedir}/docs</outputDirectory>
+                          <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                          <destDir>.</destDir>
+                          <encoding>UTF-8</encoding>
+                          <docencoding>UTF-8</docencoding>
+                          <charset>UTF-8</charset>
+        
+                          <legacyMode>true</legacyMode>
+                          <detectModules>false</detectModules>
+                          <additionalOptions>
+                     <additionalOption>--allow-script-in-comments</additionalOption>
+                 </additionalOptions>
+                  </configuration>
         </plugins>
     </build>
 </project>
