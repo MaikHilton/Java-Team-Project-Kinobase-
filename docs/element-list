@@ -1,0 +1,5 @@
+com.kinobase.app
+com.kinobase.controller
+com.kinobase.dao
+com.kinobase.entity
+com.kinobase.service

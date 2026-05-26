@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.kinobase.app"},{"l":"com.kinobase.controller"},{"l":"com.kinobase.dao"},{"l":"com.kinobase.entity"},{"l":"com.kinobase.service"}];updateSearchResults();
