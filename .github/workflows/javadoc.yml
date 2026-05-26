@@ -18,14 +18,15 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # Використовуємо життєвий цикл проходження dependency resolution
+      # Очищуємо папку docs перед генерацією, щоб видалити старі файли документації
+      - name: Clean docs folder
+        run: rm -rf docs/
+
+      # Запускаємо генерацію (вона сама створить актуальну папку docs/ згідно з конфігурацією вашого pom.xml)
       - name: Generate JavaDoc
         run: mvn process-sources javadoc:javadoc --no-transfer-progress
 
-      - name: Copy to docs/
-        run: |
-          rm -rf docs/
-          cp -r target/site/apidocs/ docs/
+      # Крок копіювання повністю видалено, оскільки файли вже генеруються безпосередньо у папку docs/
 
       - name: Commit and push docs/
         run: |
