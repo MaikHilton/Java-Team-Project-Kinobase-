@@ -18,18 +18,20 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      # Додано фазу compile, яка завантажує бібліотеки JavaFX перед генерацією документації
       - name: Generate JavaDoc
-        run: mvn javadoc:javadoc --no-transfer-progress
+        run: mvn clean compile javadoc:javadoc --no-transfer-progress
 
       - name: Copy to docs/
         run: |
           rm -rf docs/
           cp -r target/site/apidocs/ docs/
 
+      # Додано прапорець примусового додавання -f для надійності
       - name: Commit and push docs/
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add -f docs/
           git diff --staged --quiet || git commit -m "docs: auto-generate javadoc [skip ci]"
           git push
