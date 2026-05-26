@@ -277,7 +277,6 @@ refactor(dao): extract DB connection to JDBCHelper class
 ### Вимоги
 
 - Опис — **англійською мовою**
-- Один коміт = **одна логічна зміна**
 - Заборонені коміти типу `fix`, `update`, `changes` без пояснення
 
 ---
