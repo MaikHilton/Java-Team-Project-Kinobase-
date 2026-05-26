@@ -46,7 +46,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.kinobase.MainApp</mainClass>
+                    <mainClass>com.kinobase.app.MainApp</mainClass>
                 </configuration>
             </plugin>
 
@@ -74,7 +74,6 @@
                     <charset>UTF-8</charset>
 
                     <release>21</release>
-                    <legacyMode>true</legacyMode>
                     <additionalOptions>
                         <additionalOption>--allow-script-in-comments</additionalOption>
                     </additionalOptions>
